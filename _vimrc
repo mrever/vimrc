@@ -64,11 +64,11 @@ call vundle#end()            " required
 filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:slime_target = "vimterminal"
-nnoremap <silent> <c-a> :SlimeSend<cr>:sleep 300m<cr>:SlimeSend0 "\n"<cr>
-inoremap <silent> <c-a> <esc>:SlimeSend<cr>:sleep 300m<cr>:SlimeSend0 "\n"<cr>
-vnoremap <silent> <c-a> :SlimeSend<cr>:sleep 300m<cr>:SlimeSend0 "\n"<cr>
-nnoremap <silent> <c-z> o<esc>:SlimeSend<cr>u
-inoremap <silent> <c-z> <esc>o<esc>:SlimeSend<cr>ua
+"nnoremap <silent> <c-a> :SlimeSend<cr>:sleep 300m<cr>:SlimeSend0 "\n"<cr>
+"inoremap <silent> <c-a> <esc>:SlimeSend<cr>:sleep 300m<cr>:SlimeSend0 "\n"<cr>
+"vnoremap <silent> <c-a> :SlimeSend<cr>:sleep 300m<cr>:SlimeSend0 "\n"<cr>
+"nnoremap <silent> <c-z> o<esc>:SlimeSend<cr>u
+"inoremap <silent> <c-z> <esc>o<esc>:SlimeSend<cr>ua
 
  
 let g:rainbow_active = 1
@@ -90,6 +90,9 @@ command! Q :q
 
 inoremap \fp <c-r>=getcwd()<CR>
 nnoremap <m-a> wbye:%s/\<<c-r>"\>//g<left><left>
+
+inoremap <c-s> <esc>!!cat ~/snips/
+nnoremap <F6> Go<esc>q:i.!
  
 nnoremap <m-up> :cd ..<enter>:pwd<enter>
 inoremap <m-up> <esc>:cd ..<enter>:pwd<enter>i
