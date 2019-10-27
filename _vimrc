@@ -20,6 +20,7 @@ set ff=unix
 set ffs=unix,dos
 set complete-=i
 set hidden
+set shellslash
 set wildcharm=<C-z>
 set expandtab ts=4 sw=4 ai
 set guioptions-=T
