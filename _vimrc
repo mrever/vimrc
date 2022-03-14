@@ -24,7 +24,10 @@ set shellslash
 set wildcharm=<C-z>
 set expandtab ts=4 sw=4 ai
 set guioptions-=T
+set noeb vb t_vb=
+
 syntax on
+au GUIEnter * set vb t_vb=
  
 set completeopt=longest,menuone
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -40,8 +43,8 @@ endif
 filetype off                  " required
  
 " set the runtime path to include Vundle and initialize
-set rtp+=~/vimfiles/bundle/Vundle.vim
-call vundle#begin('$USERPROFILE/vimfiles/bundle/')
+set rtp+=~/bin/vimfiles/bundle/Vundle.vim
+call vundle#begin('$USERPROFILE/bin/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
  
 " let Vundle manage Vundle, required
