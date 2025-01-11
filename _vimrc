@@ -59,7 +59,6 @@ nnoremap <s-tab> :bp<cr>
  
 noremap Q gq
  
- 
 nnoremap <C-l> <C-w><C-l>
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-k> <C-w><C-k>
@@ -109,30 +108,17 @@ vnoremap <F11> "+y:cd <s-insert>
 inoremap <F11> <esc>V"+y:cd <s-insert><backspace>
 
 
-if has('nvim')
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" nvim specific
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nossl
-if has('win32')
-    call plug#begin('~\bin\vimfiles\bundle')
-else
-    call plug#begin()
-endif " end if win32
-    Plug 'frazrepo/vim-rainbow'
-    Plug 'frazrepo/nerdcommenter'
-    Plug 'mrever/Volyglot'
-    Plug 'mrever/volyglot_utils'
-    Plug 'tpope/vim-vividchalk'
-    "Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-    call plug#end()
-"endif " end if win32
+call plug#begin('~/bin/vimfiles/bundle')
+Plug 'frazrepo/vim-rainbow'
+Plug 'frazrepo/nerdcommenter'
+Plug 'mrever/Volyglot'
+Plug 'mrever/volyglot_utils'
+Plug 'tpope/vim-vividchalk'
+"Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+call plug#end()
 set shellslash
-filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:slime_target = "neovim"
-
-else "vim/gvim
 
 if has('gui_running')
     set noeb vb t_vb=
@@ -144,6 +130,7 @@ if has('gui_running')
             nnoremap <C-s-Up> :silent! let &guifont = substitute(   &guifont,   ':h\zs\d\+',   '\=eval(submatch(0)+1)',   '')<CR>
             nnoremap <C-s-Down> :silent! let &guifont = substitute(   &guifont,   ':h\zs\d\+',   '\=eval(submatch(0)-1)',   '')<CR>
         else
+            " SCP font not available on nvim-qt atm
             set guifont=Source\ Code\ Pro\ 16
             nnoremap <C-s-Up> :silent! let &guifont = substitute(   &guifont,   ' \zs\d\+$',   '\=eval(submatch(0)+1)',   '')<CR>
             nnoremap <C-s-Down> :silent! let &guifont = substitute(   &guifont,   ' \zs\d\+$',   '\=eval(submatch(0)-1)',   '')<CR>
@@ -151,37 +138,6 @@ if has('gui_running')
     au GUIEnter * set vb t_vb=
 endif "if has gui_running
 
-""" setup plugins
-filetype off                  " required
-" set the runtime path to include Vundle and initialize
-set rtp+=~/bin/vimfiles/bundle/Vundle.vim
-call vundle#begin('~/bin/vimfiles/bundle/')
-" alternatively, pass a path where Vundle should install plugins
- 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'mrever/Volyglot'
-Plugin 'mrever/volyglot_utils'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-vividchalk'
-Plugin 'frazrepo/vim-rainbow'
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'tpope/vim-surround'
-"Plugin 'ervandew/supertab'
-"Plugin 'skywind3000/asyncrun'
-"Plugin 'easymotion/vim-easymotion'
-"Plugin 'vim-scripts/Conque-Shell'
-"Plugin 'Shougo/vimproc.vim'
-"Plugin 'Shougo/vimshell.vim'
-"Plugin 'jpalardy/vim-slime'
- 
-call vundle#end()            " required
-filetype plugin indent on
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:slime_target = "vimterminal"
-
-endif "end if has('nvim')
 
 let g:rainbow_active = 1
 colorscheme vividchalk
@@ -198,6 +154,9 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ scratch section
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:slime_target = "neovim"
+"let g:slime_target = "vimterminal"
+
 "nnoremap <silent> <c-a> :SlimeSend<cr>:sleep 300m<cr>:SlimeSend0 "\n"<cr>
 "inoremap <silent> <c-a> <esc>:SlimeSend<cr>:sleep 300m<cr>:SlimeSend0 "\n"<cr>
 "vnoremap <silent> <c-a> :SlimeSend<cr>:sleep 300m<cr>:SlimeSend0 "\n"<cr>
