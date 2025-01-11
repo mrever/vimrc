@@ -141,11 +141,13 @@ if has('gui_running')
     set lines=32 columns=217
     if has('win32')
             set guifont=JuliaMono:h10
+            nnoremap <C-s-Up> :silent! let &guifont = substitute(   &guifont,   ':h\zs\d\+',   '\=eval(submatch(0)+1)',   '')<CR>
+            nnoremap <C-s-Down> :silent! let &guifont = substitute(   &guifont,   ':h\zs\d\+',   '\=eval(submatch(0)-1)',   '')<CR>
         else
-            set guifont=Source\ Code\ Pro 
+            set guifont=Source\ Code\ Pro\ 16
+            nnoremap <C-s-Up> :silent! let &guifont = substitute(   &guifont,   ' \zs\d\+$',   '\=eval(submatch(0)+1)',   '')<CR>
+            nnoremap <C-s-Down> :silent! let &guifont = substitute(   &guifont,   ' \zs\d\+$',   '\=eval(submatch(0)-1)',   '')<CR>
     endif
-    nnoremap <C-s-Up> :silent! let &guifont = substitute(   &guifont,   ':h\zs\d\+',   '\=eval(submatch(0)+1)',   '')<CR>
-    nnoremap <C-s-Down> :silent! let &guifont = substitute(   &guifont,   ':h\zs\d\+',   '\=eval(submatch(0)-1)',   '')<CR>
     au GUIEnter * set vb t_vb=
 endif "if has gui_running
 
