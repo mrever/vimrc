@@ -22,6 +22,7 @@ set shellslash
 set wildcharm=<C-z>
 set expandtab ts=4 sw=4 ai
 set wildmode=longest:full,full
+set noeb vb t_vb=
 
 syntax on
  
@@ -121,7 +122,6 @@ set shellslash
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if has('gui_running')
-    set noeb vb t_vb=
     set guioptions-=T
     set guioptions-=m
     set lines=32 columns=217
