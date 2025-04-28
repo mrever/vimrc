@@ -24,6 +24,8 @@ set expandtab ts=4 sw=4 ai
 set wildmode=longest:full,full
 set noeb vb t_vb=
 
+let mapleader=","
+
 syntax on
  
 set completeopt=longest,menuone
@@ -109,7 +111,19 @@ vnoremap <F11> "+y:cd <s-insert>
 inoremap <F11> <esc>V"+y:cd <s-insert><backspace>
 
 
-set nossl
+if !has("nvim")
+    set nossl
+    function! SendLinesToTerm()
+      for line in split(getreg('"'), "\n")
+        if !empty(line)
+          call term_sendkeys(term_list()[0], line . "\r")
+        endif
+      endfor
+    endfunction
+    nnoremap <leader>s yy:call SendLinesToTerm()<CR>
+    inoremap <leader>s <esc>yy:call SendLinesToTerm()<CR>a
+    vnoremap <leader>s mPyy:call SendLinesToTerm()<CR>`P
+endif
 call plug#begin('~/bin/vimfiles/bundle')
 Plug 'frazrepo/vim-rainbow'
 Plug 'frazrepo/nerdcommenter'
