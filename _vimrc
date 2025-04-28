@@ -120,9 +120,9 @@ if !has("nvim")
         endif
       endfor
     endfunction
-    nnoremap <leader>s yy:call SendLinesToTerm()<CR>
-    inoremap <leader>s <esc>yy:call SendLinesToTerm()<CR>a
-    vnoremap <leader>s mPyy:call SendLinesToTerm()<CR>`P
+    nnoremap <silent> <leader>s yy:call SendLinesToTerm()<CR>
+    inoremap <silent> <leader>s <esc>yy:call SendLinesToTerm()<CR>a
+    vnoremap <silent> <leader>s mPyy:call SendLinesToTerm()<CR>`P
 endif
 call plug#begin('~/bin/vimfiles/bundle')
 Plug 'frazrepo/vim-rainbow'
