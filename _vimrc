@@ -113,22 +113,13 @@ inoremap <F11> <esc>V"+y:cd <s-insert><backspace>
 
 if !has("nvim")
     set nossl
-    function! SendLinesToTerm()
-      for line in split(getreg('"'), "\n")
-        if !empty(line)
-          call term_sendkeys(term_list()[0], line . "\r")
-        endif
-      endfor
-    endfunction
-    nnoremap <silent> <leader>s yy:call SendLinesToTerm()<CR>
-    inoremap <silent> <leader>s <esc>yy:call SendLinesToTerm()<CR>a
-    vnoremap <silent> <leader>s mPyy:call SendLinesToTerm()<CR>`P
 endif
 call plug#begin('~/bin/vimfiles/bundle')
 Plug 'frazrepo/vim-rainbow'
 Plug 'frazrepo/nerdcommenter'
 Plug 'mrever/Volyglot'
 Plug 'mrever/volyglot_utils'
+Plug 'mrever/vim-sendtoterminal'
 Plug 'tpope/vim-vividchalk'
 "Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
