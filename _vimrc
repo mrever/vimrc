@@ -3,9 +3,9 @@ set mouse=a
 set encoding=utf-8
 set nu
 set history=999                 " keep 999 lines of command line history
-set ruler                               " show the cursor position all the time
+set ruler                       " show the cursor position all the time
 set showcmd                     " display incomplete commands
-set incsearch                      " do incremental searching
+set incsearch                   " do incremental searching
 set nobackup
 set noswapfile
 set noundofile
@@ -24,7 +24,7 @@ set expandtab ts=4 sw=4 ai
 set wildmode=longest:full,full
 set noeb vb t_vb=
 
-let mapleader=","
+let mapleader="\\"
 
 syntax on
  
