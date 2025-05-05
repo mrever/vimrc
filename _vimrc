@@ -46,29 +46,37 @@ command! W :w
 command! Q :q
 
 function! CloseBuf() abort
-  let l:orig_win = win_getid()
-  let l:bufnr    = bufnr('%')
-  for winid in win_findbuf(l:bufnr)
+  let orig_win = win_getid()
+  let bufnr    = bufnr('%')
+  let wins     = win_findbuf(bufnr)
+  for winid in wins
     call win_gotoid(winid)
     silent! bnext
   endfor
-  call win_gotoid(l:orig_win)
-  if getbufvar(l:bufnr, '&modified')
-    let choice = confirm(
-          \ 'Buffer has unsaved changes. Save before closing?',
-          \ "&Yes\n&No\n&Cancel",
-          \ 3
-          \ )
+  call win_gotoid(orig_win)
+  if getbufvar(bufnr, '&modified')
+      let choice = confirm(
+                  \ 'Buffer has unsaved changes. Save before closing?',
+                  \ "&Yes\n&No\n&Cancel",
+                  \ 3
+                  \ )
     if choice == 3
+      for winid in wins
+        call win_gotoid(winid)
+        execute 'silent buffer ' . bufnr
+      endfor
+      call win_gotoid(orig_win)
       return
     elseif choice == 1
       execute 'write'
     endif
   endif
-    execute 'silent bdelete! ' . l:bufnr
+  execute 'silent bdelete! ' . bufnr
+  call win_gotoid(orig_win)
 endfunction
 
 "command! Bd bp | sp | bn | bd
+"command! Bdd bp | sp | bn | bd!
 command! Bd :call CloseBuf()
 
 inoremap \fp <c-r>=getcwd()<CR>
