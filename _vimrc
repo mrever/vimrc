@@ -45,6 +45,20 @@ command! Cd :lcd %:p:h
 command! W :w
 command! Q :q
 
+function! CloseBuf() abort
+  let l:orig_win = win_getid()
+  let l:bufnr    = bufnr('%')
+  for winid in win_findbuf(l:bufnr)
+    call win_gotoid(winid)
+    silent! bnext
+  endfor
+  call win_gotoid(l:orig_win)
+  execute 'silent! bdelete! ' . l:bufnr
+endfunction
+
+"command! Bd bp | sp | bn | bd
+command! Bd :call CloseBuf()
+
 inoremap \fp <c-r>=getcwd()<CR>
 nnoremap <m-a> wbye:%s/\<<c-r>"\>//g<left><left>
 
