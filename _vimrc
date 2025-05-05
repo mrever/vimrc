@@ -53,7 +53,19 @@ function! CloseBuf() abort
     silent! bnext
   endfor
   call win_gotoid(l:orig_win)
-  execute 'silent! bdelete! ' . l:bufnr
+  if getbufvar(l:bufnr, '&modified')
+    let choice = confirm(
+          \ 'Buffer has unsaved changes. Save before closing?',
+          \ "&Yes\n&No\n&Cancel",
+          \ 3
+          \ )
+    if choice == 3
+      return
+    elseif choice == 1
+      execute 'write'
+    endif
+  endif
+    execute 'silent bdelete! ' . l:bufnr
 endfunction
 
 "command! Bd bp | sp | bn | bd
